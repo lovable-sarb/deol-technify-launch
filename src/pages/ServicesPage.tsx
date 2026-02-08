@@ -11,6 +11,11 @@ import {
   Phone, MessageCircle, MessageSquare, Mic, PhoneCall,
   Bot, BrainCircuit, AudioLines, Sparkles, Wrench,
   BarChart3, SlidersHorizontal, GitBranch, Mail, Video,
+  ShoppingCart, Store, CreditCard, Package, Truck,
+  Headphones, Radio, Volume2, Speech,
+  Instagram, Share2, TrendingUp, Megaphone, Hash,
+  Shield, Lock, Eye, Key, FileCheck,
+  Database, Cloud, LineChart, PieChart, Activity,
 } from "lucide-react";
 
 const serviceCategories = [
@@ -25,6 +30,20 @@ const serviceCategories = [
       { icon: Server, title: "Custom Software Development", description: "Tailored software solutions designed to solve your unique business challenges with clean, maintainable code." },
       { icon: Smartphone, title: "Mobile App Development (Android & iOS)", description: "Cross-platform and native mobile applications that deliver seamless experiences on all devices." },
       { icon: Plug, title: "API Development & Integrations", description: "RESTful and GraphQL APIs with third-party integrations to connect your systems and streamline data flow." },
+    ],
+  },
+  {
+    id: "ecommerce",
+    label: "E-Commerce",
+    title: "E-Commerce Stores & Online Selling Solutions",
+    description: "Launch and scale your online store with custom e-commerce solutions, Shopify development, and complete selling systems.",
+    services: [
+      { icon: ShoppingCart, title: "Shopify Store Development", description: "Custom Shopify store setup with theme customization, app integrations, and conversion-optimized product pages." },
+      { icon: Store, title: "WooCommerce & WordPress Stores", description: "Powerful WordPress e-commerce sites with WooCommerce for complete control over your online store." },
+      { icon: Code, title: "Headless Commerce Solutions", description: "Modern headless e-commerce with React storefronts connected to Shopify, BigCommerce, or custom backends." },
+      { icon: CreditCard, title: "Payment Gateway Integration", description: "Stripe, PayPal, Razorpay, and custom payment integrations for seamless and secure transactions worldwide." },
+      { icon: Package, title: "Inventory & Order Management", description: "Automated inventory tracking, order processing, and fulfillment systems that scale with your business." },
+      { icon: Truck, title: "Dropshipping Automation", description: "Complete dropshipping store setup with supplier integrations, auto-ordering, and profit tracking systems." },
     ],
   },
   {
@@ -53,16 +72,57 @@ const serviceCategories = [
     ],
   },
   {
+    id: "whatsapp",
+    label: "WhatsApp Solutions",
+    title: "WhatsApp Business API & Marketing Automation",
+    description: "Leverage WhatsApp's massive reach with automated messaging, chatbots, and complete business communication systems.",
+    services: [
+      { icon: MessageCircle, title: "WhatsApp Business API Setup", description: "Complete WhatsApp Business API integration with verified business profiles and official messaging capabilities." },
+      { icon: Bot, title: "WhatsApp Chatbots", description: "AI-powered WhatsApp chatbots for 24/7 customer support, FAQs, appointment booking, and lead qualification." },
+      { icon: Megaphone, title: "WhatsApp Marketing Campaigns", description: "Broadcast campaigns, promotional messages, and personalized marketing automation through WhatsApp." },
+      { icon: ShoppingCart, title: "WhatsApp Commerce", description: "Complete WhatsApp shopping experience with product catalogs, cart management, and in-chat payments." },
+      { icon: Workflow, title: "WhatsApp CRM Integration", description: "Connect WhatsApp to your CRM for unified customer conversations, lead tracking, and sales automation." },
+      { icon: BarChart3, title: "WhatsApp Analytics & Reporting", description: "Comprehensive analytics on message delivery, engagement rates, and conversation metrics." },
+    ],
+  },
+  {
+    id: "voice",
+    label: "Voice Agents",
+    title: "AI Voice Agents & Conversational AI Systems",
+    description: "Deploy intelligent voice agents powered by cutting-edge AI for customer service, sales, and automated phone interactions.",
+    services: [
+      { icon: Headphones, title: "AI Voice Agents (ElevenLabs)", description: "Human-like AI voice agents using ElevenLabs for natural conversations, customer support, and sales calls." },
+      { icon: AudioLines, title: "Conversational AI Assistants", description: "Build voice-first AI assistants that understand context, handle complex queries, and provide personalized responses." },
+      { icon: PhoneCall, title: "Automated Phone Systems", description: "IVR replacements with AI that naturally guides callers, schedules appointments, and handles inquiries." },
+      { icon: Volume2, title: "Voice Cloning & Custom Voices", description: "Create custom AI voices for your brand or clone existing voices for consistent customer experiences." },
+      { icon: Radio, title: "Outbound Voice Campaigns", description: "AI-powered outbound calling for appointment reminders, surveys, lead follow-ups, and collections." },
+      { icon: Mic, title: "Speech-to-Text & Transcription", description: "Real-time transcription, call recording analysis, and meeting notes automation with AI accuracy." },
+    ],
+  },
+  {
     id: "communication",
     label: "Communication Systems",
-    title: "Twilio, WhatsApp API & Communication Automation",
+    title: "Twilio, SMS & Multi-Channel Communication",
     description: "Build powerful communication systems with automated messaging, voice bots, and multi-channel engagement.",
     services: [
       { icon: Phone, title: "Twilio Integrations", description: "Full Twilio implementation for voice, SMS, video, and WhatsApp communication in your applications." },
-      { icon: MessageCircle, title: "WhatsApp API Systems", description: "WhatsApp Business API integration for automated customer support, notifications, and marketing campaigns." },
       { icon: MessageSquare, title: "SMS Automation", description: "Automated SMS campaigns, two-factor authentication, appointment reminders, and transactional messaging." },
-      { icon: Mic, title: "Voice Bots", description: "AI-powered voice bots that handle customer calls, answer questions, and route inquiries intelligently." },
-      { icon: PhoneCall, title: "Call Automation", description: "Automated call systems with IVR, call routing, recording, and analytics for your business." },
+      { icon: Video, title: "Video Calling Solutions", description: "WebRTC and Twilio Video integrations for telehealth, consultations, and real-time video communication." },
+      { icon: PhoneCall, title: "Call Center Automation", description: "Cloud-based call center solutions with AI routing, queue management, and agent performance analytics." },
+      { icon: Mail, title: "Omnichannel Messaging", description: "Unified messaging across SMS, email, WhatsApp, and social media from a single platform." },
+    ],
+  },
+  {
+    id: "social",
+    label: "Social Media",
+    title: "Social Media Automation & Marketing",
+    description: "Automate your social media presence with AI-powered content, scheduling, engagement bots, and analytics.",
+    services: [
+      { icon: Instagram, title: "Instagram & Facebook Automation", description: "Automated posting, story scheduling, DM responses, and engagement automation for Meta platforms." },
+      { icon: Hash, title: "TikTok & Short-Form Content", description: "TikTok automation, trend analysis, and short-form video content strategies that drive viral growth." },
+      { icon: Share2, title: "Social Media Management Tools", description: "Custom social media dashboards for multi-platform posting, analytics, and team collaboration." },
+      { icon: TrendingUp, title: "Influencer Campaign Automation", description: "Automated influencer outreach, campaign tracking, and ROI measurement systems." },
+      { icon: Bot, title: "Social Media Chatbots", description: "AI chatbots for Facebook Messenger, Instagram DMs, and Twitter for automated customer engagement." },
     ],
   },
   {
@@ -71,11 +131,12 @@ const serviceCategories = [
     title: "AI Agents, Chatbots & Intelligent Automation",
     description: "Harness the power of artificial intelligence with custom AI agents, chatbots, voice assistants, and automation tools.",
     services: [
-      { icon: Bot, title: "AI Agents", description: "Autonomous AI agents that can research, analyze data, make decisions, and execute tasks on your behalf." },
-      { icon: BrainCircuit, title: "AI Chatbots", description: "Intelligent chatbots with natural language understanding for customer support, sales, and internal processes." },
-      { icon: AudioLines, title: "AI Voice Assistants", description: "Custom voice assistants powered by AI for hands-free interaction and automated customer service." },
-      { icon: Sparkles, title: "AI Automation Systems", description: "End-to-end AI automation pipelines that learn and improve over time to optimize your operations." },
-      { icon: Wrench, title: "Custom AI Tools", description: "Bespoke AI solutions including document processing, image recognition, predictive analytics, and more." },
+      { icon: Bot, title: "AI Agents & Copilots", description: "Autonomous AI agents that can research, analyze data, make decisions, and execute complex multi-step tasks." },
+      { icon: BrainCircuit, title: "Custom GPT & LLM Solutions", description: "Fine-tuned language models, custom GPTs, and RAG systems tailored to your business knowledge base." },
+      { icon: Sparkles, title: "AI Content Generation", description: "Automated content creation for blogs, social media, product descriptions, and marketing materials." },
+      { icon: Eye, title: "Computer Vision & Image AI", description: "Image recognition, object detection, document processing, and visual AI for automation workflows." },
+      { icon: Wrench, title: "AI Integration Services", description: "Integrate OpenAI, Claude, Gemini, and other AI models into your existing applications and workflows." },
+      { icon: Activity, title: "Predictive Analytics", description: "AI-powered forecasting, demand prediction, and data-driven insights for strategic decision making." },
     ],
   },
   {
@@ -89,6 +150,30 @@ const serviceCategories = [
       { icon: GitBranch, title: "Pipeline Automation", description: "Automated sales pipelines that move leads through stages with triggers, tasks, and notifications." },
       { icon: Mail, title: "Email & SMS Sequences", description: "Multi-channel nurture sequences combining email and SMS for maximum engagement and conversion." },
       { icon: Video, title: "Webinar Automation", description: "Automated webinar funnels with registration, reminders, replay sequences, and post-webinar follow-ups." },
+    ],
+  },
+  {
+    id: "data",
+    label: "Data & Analytics",
+    title: "Business Intelligence & Data Analytics Solutions",
+    description: "Turn your data into actionable insights with custom dashboards, reporting systems, and analytics platforms.",
+    services: [
+      { icon: LineChart, title: "Custom Analytics Dashboards", description: "Real-time business dashboards with KPIs, metrics, and visualizations tailored to your needs." },
+      { icon: Database, title: "Data Warehouse Solutions", description: "Centralized data warehouses that consolidate all your business data for unified analytics." },
+      { icon: PieChart, title: "Reporting Automation", description: "Automated report generation and distribution for sales, marketing, finance, and operations." },
+      { icon: Cloud, title: "Cloud Data Integration", description: "ETL pipelines connecting your tools to cloud platforms like BigQuery, Snowflake, and Redshift." },
+    ],
+  },
+  {
+    id: "security",
+    label: "Security & Compliance",
+    title: "Cybersecurity & Data Protection Solutions",
+    description: "Protect your business with security audits, compliance implementation, and ongoing monitoring solutions.",
+    services: [
+      { icon: Shield, title: "Security Audits & Assessments", description: "Comprehensive security reviews identifying vulnerabilities in your applications and infrastructure." },
+      { icon: Lock, title: "Authentication & Access Control", description: "SSO, MFA, RBAC, and secure authentication systems to protect your applications and data." },
+      { icon: FileCheck, title: "Compliance Implementation", description: "GDPR, HIPAA, SOC 2, and PCI-DSS compliance setup with documentation and audit preparation." },
+      { icon: Key, title: "API Security", description: "Secure API design, rate limiting, encryption, and protection against common attack vectors." },
     ],
   },
 ];
@@ -109,7 +194,7 @@ const ServicesPage = () => (
           Complete <span className="gradient-text">Technology & Automation</span> Solutions
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-          From custom software development to AI-powered automation, we deliver end-to-end solutions that transform how you do business.
+          From e-commerce stores and WhatsApp automation to AI voice agents and custom software — we deliver cutting-edge solutions that transform how you do business.
         </p>
         <Link to="/contact">
           <Button size="lg" className="gradient-bg text-primary-foreground font-semibold glow-border">

@@ -10,12 +10,12 @@ const quickLinks = [
 ];
 
 const serviceLinks = [
-  { label: "Web & SaaS Development", to: "/services#development" },
-  { label: "Business Automation", to: "/services#automation" },
+  { label: "E-Commerce Stores", to: "/services#ecommerce" },
+  { label: "WhatsApp Solutions", to: "/services#whatsapp" },
+  { label: "AI Voice Agents", to: "/services#voice" },
   { label: "AI Solutions", to: "/services#ai" },
+  { label: "Social Media Automation", to: "/services#social" },
   { label: "CRM & Funnels", to: "/services#crm" },
-  { label: "Communication Systems", to: "/services#communication" },
-  { label: "Integration Tools", to: "/services#integration" },
 ];
 
 const Footer = () => (
