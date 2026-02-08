@@ -7,29 +7,27 @@ import heroImage from "@/assets/hero-illustration.jpg";
 import {
   ArrowRight,
   Code,
-  Cpu,
   Zap,
   Bot,
   MessageSquare,
-  BarChart3,
+  ShoppingCart,
+  Headphones,
   Rocket,
   Shield,
   TrendingUp,
-  Search,
-  Layers,
   Settings,
-  Send,
   Star,
   Quote,
+  Cpu,
 } from "lucide-react";
 
 const services = [
   { icon: Code, title: "Web & SaaS Development", description: "Custom web applications, SaaS platforms, mobile apps, and API integrations built with cutting-edge technology." },
-  { icon: Cpu, title: "Business Automation", description: "Streamline operations with workflow automation, CRM automation, marketing, and lead generation systems." },
-  { icon: Zap, title: "Integration Tools", description: "Zapier, n8n, Make (Integromat) automation, and custom scripts to connect all your business tools." },
-  { icon: MessageSquare, title: "Communication Systems", description: "Twilio, WhatsApp API, SMS automation, voice bots, and call automation for seamless communication." },
-  { icon: Bot, title: "AI Solutions", description: "AI agents, chatbots, voice assistants, and custom AI tools to supercharge your business operations." },
-  { icon: BarChart3, title: "CRM & Sales Funnels", description: "GoHighLevel setup, pipeline automation, email & SMS sequences, and webinar automation." },
+  { icon: ShoppingCart, title: "E-Commerce Stores", description: "Shopify, WooCommerce, headless commerce, and complete online selling solutions with payment integrations." },
+  { icon: MessageSquare, title: "WhatsApp Automation", description: "WhatsApp Business API, chatbots, marketing campaigns, and commerce solutions for customer engagement." },
+  { icon: Headphones, title: "AI Voice Agents", description: "ElevenLabs voice agents, conversational AI, automated phone systems, and speech-to-text solutions." },
+  { icon: Bot, title: "AI Solutions", description: "AI agents, GPT/LLM solutions, chatbots, content generation, and predictive analytics for your business." },
+  { icon: Zap, title: "Automation & Integration", description: "Zapier, n8n, Make automation, workflow optimization, and seamless tool integrations." },
 ];
 
 const whyUs = [

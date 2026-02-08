@@ -17,35 +17,77 @@ const contactSchema = z.object({
 });
 
 const serviceOptions = [
+  // Development
   "Web Application Development",
   "SaaS Platform Development",
   "Custom Software Development",
   "Mobile App Development",
   "API Development & Integrations",
+  // E-Commerce
+  "Shopify Store Development",
+  "WooCommerce & WordPress Stores",
+  "Headless Commerce Solutions",
+  "Payment Gateway Integration",
+  "Inventory & Order Management",
+  "Dropshipping Automation",
+  // Automation
   "Business Process Automation",
   "Workflow Automation",
   "CRM Automation",
   "Marketing Automation",
   "Lead Generation Automation",
+  // Integration Tools
   "Zapier Automation",
   "n8n Automation",
   "Make (Integromat) Automation",
   "Custom Automation Scripts",
+  // WhatsApp Solutions
+  "WhatsApp Business API Setup",
+  "WhatsApp Chatbots",
+  "WhatsApp Marketing Campaigns",
+  "WhatsApp Commerce",
+  "WhatsApp CRM Integration",
+  // Voice Agents
+  "AI Voice Agents (ElevenLabs)",
+  "Conversational AI Assistants",
+  "Automated Phone Systems",
+  "Voice Cloning & Custom Voices",
+  "Outbound Voice Campaigns",
+  "Speech-to-Text & Transcription",
+  // Communication
   "Twilio Integrations",
-  "WhatsApp API Systems",
   "SMS Automation",
-  "Voice Bots",
-  "Call Automation",
-  "AI Agents",
-  "AI Chatbots",
-  "AI Voice Assistants",
-  "AI Automation Systems",
-  "Custom AI Tools",
+  "Video Calling Solutions",
+  "Call Center Automation",
+  "Omnichannel Messaging",
+  // Social Media
+  "Instagram & Facebook Automation",
+  "TikTok & Short-Form Content",
+  "Social Media Management Tools",
+  "Influencer Campaign Automation",
+  "Social Media Chatbots",
+  // AI Solutions
+  "AI Agents & Copilots",
+  "Custom GPT & LLM Solutions",
+  "AI Content Generation",
+  "Computer Vision & Image AI",
+  "Predictive Analytics",
+  // CRM & Funnels
   "GoHighLevel (GHL) Setup",
   "Sales Funnels",
   "Pipeline Automation",
   "Email & SMS Sequences",
   "Webinar Automation",
+  // Data & Analytics
+  "Custom Analytics Dashboards",
+  "Data Warehouse Solutions",
+  "Reporting Automation",
+  "Cloud Data Integration",
+  // Security
+  "Security Audits & Assessments",
+  "Authentication & Access Control",
+  "Compliance Implementation (GDPR/HIPAA/SOC2)",
+  "API Security",
   "Other",
 ];
 
