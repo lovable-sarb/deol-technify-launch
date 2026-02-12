@@ -2,23 +2,13 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/SectionHeading";
 import ServiceCard from "@/components/ServiceCard";
+import TestimonialSection from "@/components/TestimonialSection";
+import ClientLogos from "@/components/ClientLogos";
 import Layout from "@/components/Layout";
 import heroImage from "@/assets/hero-illustration.jpg";
 import {
-  ArrowRight,
-  Code,
-  Zap,
-  Bot,
-  MessageSquare,
-  ShoppingCart,
-  Headphones,
-  Rocket,
-  Shield,
-  TrendingUp,
-  Settings,
-  Star,
-  Quote,
-  Cpu,
+  ArrowRight, Code, Zap, Bot, MessageSquare, ShoppingCart,
+  Headphones, Rocket, Shield, TrendingUp, Settings, Cpu,
 } from "lucide-react";
 
 const services = [
@@ -45,10 +35,11 @@ const process = [
   { step: "05", title: "Automation", description: "Implement ongoing automation and support to keep everything running smoothly." },
 ];
 
-const testimonials = [
-  { name: "Sarah Mitchell", role: "CEO, GrowthScale Inc.", text: "Deol Technify transformed our entire sales pipeline with AI-powered automation. Revenue increased 40% in 3 months." },
-  { name: "James Rodriguez", role: "CTO, DataFlow Systems", text: "Their SaaS development expertise is unmatched. They delivered our platform ahead of schedule with incredible quality." },
-  { name: "Emily Chen", role: "Marketing Director, NexaHub", text: "The WhatsApp and SMS automation setup they built generates leads on autopilot. Game-changing for our team." },
+const stats = [
+  { value: "150+", label: "Projects Delivered" },
+  { value: "40+", label: "Happy Clients" },
+  { value: "98%", label: "Client Satisfaction" },
+  { value: "24/7", label: "Support Available" },
 ];
 
 const Index = () => {
@@ -56,7 +47,7 @@ const Index = () => {
     <Layout>
       {/* Hero */}
       <section className="relative section-padding overflow-hidden" aria-label="Hero">
-        <div className="absolute inset-0 grid-pattern opacity-30" />
+        <div className="absolute inset-0 grid-pattern opacity-40" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px]" />
         <div className="container mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -85,11 +76,11 @@ const Index = () => {
               </div>
             </div>
             <div className="relative animate-slide-up animate-slide-up-delay-2">
-              <div className="absolute inset-0 gradient-bg opacity-20 rounded-2xl blur-2xl" />
+              <div className="absolute inset-0 gradient-bg opacity-10 rounded-2xl blur-2xl" />
               <img
                 src={heroImage}
                 alt="Deol Technify AI-powered technology and automation solutions illustration"
-                className="relative rounded-2xl border border-border/40 w-full animate-float"
+                className="relative rounded-2xl border border-border/40 w-full animate-float shadow-xl"
                 width={960}
                 height={544}
                 loading="eager"
@@ -99,8 +90,25 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Stats */}
+      <section className="py-12 px-4 border-y border-border/40 bg-primary/[0.02]" aria-label="Key stats">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((s) => (
+              <div key={s.label} className="text-center">
+                <p className="font-display text-3xl md:text-4xl font-bold gradient-text">{s.value}</p>
+                <p className="text-sm text-muted-foreground mt-1">{s.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Client Logos */}
+      <ClientLogos />
+
       {/* Services Overview */}
-      <section className="section-padding bg-card/30" id="services" aria-label="Our Services">
+      <section className="section-padding bg-muted/30" id="services" aria-label="Our Services">
         <div className="container mx-auto">
           <SectionHeading
             label="What We Do"
@@ -138,7 +146,7 @@ const Index = () => {
       </section>
 
       {/* Process */}
-      <section className="section-padding bg-card/30" aria-label="Our Process">
+      <section className="section-padding bg-muted/30" aria-label="Our Process">
         <div className="container mx-auto">
           <SectionHeading
             label="Our Process"
@@ -160,31 +168,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="section-padding" aria-label="Client Testimonials">
-        <div className="container mx-auto">
-          <SectionHeading
-            label="Testimonials"
-            title="Trusted by Businesses Worldwide"
-            description="See what our clients say about working with Deol Technify."
-          />
-          <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((t) => (
-              <div key={t.name} className="glass-card-hover p-6">
-                <Quote className="w-8 h-8 text-primary/30 mb-4" />
-                <p className="text-muted-foreground text-sm leading-relaxed mb-6">"{t.text}"</p>
-                <div className="flex items-center gap-1 mb-3">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-primary fill-primary" />
-                  ))}
-                </div>
-                <p className="font-display font-semibold text-foreground text-sm">{t.name}</p>
-                <p className="text-xs text-muted-foreground">{t.role}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Testimonials from DB */}
+      <TestimonialSection />
 
       {/* CTA */}
       <section className="section-padding" aria-label="Book Your Project">
