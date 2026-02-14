@@ -189,22 +189,22 @@ const Footer = () => (
                   href="mailto:contact@deoltechnify.com" 
                   className="footer-font text-sm text-gray-600 hover:text-indigo-600 transition-colors"
                 >
-                  contact@deoltechnify.com
+                  admin@deoltechnify.com
                 </a>
               </li>
               <li className="contact-item flex items-start gap-3">
                 <Phone className="w-4 h-4 mt-0.5 text-indigo-600 shrink-0" />
                 <a 
-                  href="tel:+15551234567" 
+                  href="tel:+971503671142" 
                   className="footer-font text-sm text-gray-600 hover:text-indigo-600 transition-colors"
                 >
-                  +1 (555) 123-4567
+                  +971 (50) 367-1142
                 </a>
               </li>
               <li className="contact-item flex items-start gap-3">
                 <MapPin className="w-4 h-4 mt-0.5 text-indigo-600 shrink-0" />
                 <span className="footer-font text-sm text-gray-600">
-                  123 Tech Street, Innovation City, IC 10001
+                  123 Tech Street, Batala City, IN 143505
                 </span>
               </li>
             </ul>
