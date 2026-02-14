@@ -234,7 +234,7 @@ const AdminBlogPage = () => {
                 </div>
                 <div className="flex gap-2 shrink-0">
                   <Button size="sm" variant="ghost" onClick={() => togglePublish(post)} title={post.published ? "Unpublish" : "Publish"}>
-                    {post.published ? <Eye className="w-4 h-4 text-green-600" /> : <EyeOff className="w-4 h-4 text-muted-foreground" />}
+                    {post.published ? <Eye className="w-4 h-4 text-primary" /> : <EyeOff className="w-4 h-4 text-muted-foreground" />}
                   </Button>
                   <Button size="sm" variant="ghost" onClick={() => startEdit(post)}>
                     <Edit2 className="w-4 h-4" />
