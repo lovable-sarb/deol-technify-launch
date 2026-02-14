@@ -99,7 +99,7 @@ const TestimonialSection = () => {
                 <p className="text-muted-foreground text-sm leading-relaxed mb-6">"{t.text}"</p>
                 <div className="flex items-center gap-1 mb-3">
                   {[...Array(t.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-amber-500 fill-amber-500" />
+                    <Star key={i} className="w-4 h-4 text-primary fill-primary" />
                   ))}
                 </div>
                 <p className="font-display font-semibold text-foreground text-sm">{t.name}</p>
@@ -164,7 +164,7 @@ const TestimonialSection = () => {
                 <div className="flex gap-1">
                   {[1, 2, 3, 4, 5].map((r) => (
                     <button key={r} type="button" onClick={() => update("rating", r)}>
-                      <Star className={`w-6 h-6 transition-colors ${r <= form.rating ? "text-amber-500 fill-amber-500" : "text-muted-foreground"}`} />
+                      <Star className={`w-6 h-6 transition-colors ${r <= form.rating ? "text-primary fill-primary" : "text-muted-foreground"}`} />
                     </button>
                   ))}
                 </div>
