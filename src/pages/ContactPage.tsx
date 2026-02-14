@@ -92,11 +92,18 @@ const serviceOptions = [
 
 const ContactPage = () => {
   const { toast } = useToast();
-  const [form, setForm] = useState({ name: "", email: "", phone: "", service: "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    service: "",
+    message: "",
+  });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     const result = contactSchema.safeParse(form);
     if (!result.success) {
       const fieldErrors: Record<string, string> = {};
@@ -106,9 +113,32 @@ const ContactPage = () => {
       setErrors(fieldErrors);
       return;
     }
+
     setErrors({});
-    toast({ title: "Request Sent!", description: "We'll get back to you within 24 hours." });
-    setForm({ name: "", email: "", phone: "", service: "", message: "" });
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) throw new Error("Request failed");
+
+      toast({
+        title: "Request Sent!",
+        description: "We'll get back to you within 24 hours.",
+      });
+
+      setForm({ name: "", email: "", phone: "", service: "", message: "" });
+    } catch (err) {
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+      });
+    }
   };
 
   const update = (field: string, value: string) => {
@@ -273,7 +303,7 @@ const ContactPage = () => {
       {/* Hero Section */}
       <section className="contact-hero-banner">
         <div className="contact-hero-overlay"></div>
-        
+
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20">
           <div className="max-w-4xl mx-auto text-center">
             {/* Badge */}
@@ -293,9 +323,7 @@ const ContactPage = () => {
               style={{ animationDelay: "0.2s", opacity: 0 }}
             >
               <span className="text-white">Book a Service or </span>
-              <span className="text-white opacity-90">
-                Request a Quote
-              </span>
+              <span className="text-white opacity-90">Request a Quote</span>
             </h1>
 
             {/* Description */}
@@ -303,7 +331,8 @@ const ContactPage = () => {
               className="text-lg sm:text-xl text-white/90 leading-relaxed max-w-3xl mx-auto animate-fade-in-up"
               style={{ animationDelay: "0.4s", opacity: 0 }}
             >
-              Fill out the form below and our team will get back to you within 24 hours with a custom proposal.
+              Fill out the form below and our team will get back to you within
+              24 hours with a custom proposal.
             </p>
           </div>
         </div>
@@ -316,17 +345,32 @@ const ContactPage = () => {
             {/* Contact Info */}
             <div className="space-y-6">
               {[
-                { icon: Mail, label: "Email", value: "contact@deoltechnify.com", href: "mailto:contact@deoltechnify.com" },
-                { icon: Phone, label: "Phone", value: "+1 (555) 123-4567", href: "tel:+15551234567" },
-                { icon: MapPin, label: "Address", value: "123 Tech Street, Innovation City, IC 10001", href: null },
+                {
+                  icon: Mail,
+                  label: "Email",
+                  value: "contact@deoltechnify.com",
+                  href: "mailto:contact@deoltechnify.com",
+                },
+                {
+                  icon: Phone,
+                  label: "Phone",
+                  value: "+1 (555) 123-4567",
+                  href: "tel:+15551234567",
+                },
+                {
+                  icon: MapPin,
+                  label: "Address",
+                  value: "123 Tech Street, Innovation City, IC 10001",
+                  href: null,
+                },
               ].map(({ icon: Icon, label, value, href }, index) => (
-                <div 
-                  key={label} 
+                <div
+                  key={label}
                   className="contact-info-card"
                   style={{
                     animation: `fadeInUp 0.6s ease-out forwards`,
                     animationDelay: `${index * 0.1}s`,
-                    opacity: 0
+                    opacity: 0,
                   }}
                 >
                   <div className="flex items-start gap-4">
@@ -334,13 +378,20 @@ const ContactPage = () => {
                       <Icon className="w-6 h-6 text-indigo-600" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-gray-900 mb-1">{label}</p>
+                      <p className="text-sm font-semibold text-gray-900 mb-1">
+                        {label}
+                      </p>
                       {href ? (
-                        <a href={href} className="text-sm text-gray-600 hover:text-indigo-600 transition-colors break-words">
+                        <a
+                          href={href}
+                          className="text-sm text-gray-600 hover:text-indigo-600 transition-colors break-words"
+                        >
                           {value}
                         </a>
                       ) : (
-                        <p className="text-sm text-gray-600 break-words">{value}</p>
+                        <p className="text-sm text-gray-600 break-words">
+                          {value}
+                        </p>
                       )}
                     </div>
                   </div>
@@ -348,12 +399,12 @@ const ContactPage = () => {
               ))}
 
               {/* Quick Response Badge */}
-              <div 
+              <div
                 className="contact-info-card bg-gradient-to-br from-indigo-50 to-purple-50 border-indigo-200"
                 style={{
                   animation: `fadeInUp 0.6s ease-out forwards`,
                   animationDelay: `0.3s`,
-                  opacity: 0
+                  opacity: 0,
                 }}
               >
                 <div className="text-center py-4">
@@ -364,69 +415,97 @@ const ContactPage = () => {
                     24-Hour Response
                   </h3>
                   <p className="text-sm text-gray-600">
-                    We typically respond to all inquiries within one business day
+                    We typically respond to all inquiries within one business
+                    day
                   </p>
                 </div>
               </div>
             </div>
 
             {/* Form */}
-            <div 
+            <div
               className="lg:col-span-2"
               style={{
                 animation: `fadeInUp 0.8s ease-out forwards`,
                 animationDelay: `0.2s`,
-                opacity: 0
+                opacity: 0,
               }}
             >
-              <form onSubmit={handleSubmit} className="form-card p-8 md:p-10 space-y-6">
+              <form
+                onSubmit={handleSubmit}
+                className="form-card p-8 md:p-10 space-y-6"
+              >
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-semibold text-gray-900 mb-2">
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-semibold text-gray-900 mb-2"
+                    >
                       Full Name <span className="text-red-500">*</span>
                     </label>
-                    <Input 
-                      id="name" 
-                      placeholder="John Doe" 
-                      value={form.name} 
-                      onChange={(e) => update("name", e.target.value)} 
+                    <Input
+                      id="name"
+                      placeholder="John Doe"
+                      value={form.name}
+                      onChange={(e) => update("name", e.target.value)}
                       className="form-input bg-gray-50 border-gray-200 h-12"
                     />
-                    {errors.name && <p className="text-xs text-red-600 mt-1.5">{errors.name}</p>}
+                    {errors.name && (
+                      <p className="text-xs text-red-600 mt-1.5">
+                        {errors.name}
+                      </p>
+                    )}
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-semibold text-gray-900 mb-2"
+                    >
                       Email <span className="text-red-500">*</span>
                     </label>
-                    <Input 
-                      id="email" 
-                      type="email" 
-                      placeholder="john@example.com" 
-                      value={form.email} 
-                      onChange={(e) => update("email", e.target.value)} 
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="john@example.com"
+                      value={form.email}
+                      onChange={(e) => update("email", e.target.value)}
                       className="form-input bg-gray-50 border-gray-200 h-12"
                     />
-                    {errors.email && <p className="text-xs text-red-600 mt-1.5">{errors.email}</p>}
+                    {errors.email && (
+                      <p className="text-xs text-red-600 mt-1.5">
+                        {errors.email}
+                      </p>
+                    )}
                   </div>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-semibold text-gray-900 mb-2">
+                    <label
+                      htmlFor="phone"
+                      className="block text-sm font-semibold text-gray-900 mb-2"
+                    >
                       Phone <span className="text-red-500">*</span>
                     </label>
-                    <Input 
-                      id="phone" 
-                      type="tel" 
-                      placeholder="+1 (555) 000-0000" 
-                      value={form.phone} 
-                      onChange={(e) => update("phone", e.target.value)} 
+                    <Input
+                      id="phone"
+                      type="tel"
+                      placeholder="+1 (555) 000-0000"
+                      value={form.phone}
+                      onChange={(e) => update("phone", e.target.value)}
                       className="form-input bg-gray-50 border-gray-200 h-12"
                     />
-                    {errors.phone && <p className="text-xs text-red-600 mt-1.5">{errors.phone}</p>}
+                    {errors.phone && (
+                      <p className="text-xs text-red-600 mt-1.5">
+                        {errors.phone}
+                      </p>
+                    )}
                   </div>
                   <div>
-                    <label htmlFor="service" className="block text-sm font-semibold text-gray-900 mb-2">
+                    <label
+                      htmlFor="service"
+                      className="block text-sm font-semibold text-gray-900 mb-2"
+                    >
                       Service <span className="text-red-500">*</span>
                     </label>
                     <select
@@ -437,38 +516,52 @@ const ContactPage = () => {
                     >
                       <option value="">Select a service</option>
                       {serviceOptions.map((opt) => (
-                        <option key={opt} value={opt}>{opt}</option>
+                        <option key={opt} value={opt}>
+                          {opt}
+                        </option>
                       ))}
                     </select>
-                    {errors.service && <p className="text-xs text-red-600 mt-1.5">{errors.service}</p>}
+                    {errors.service && (
+                      <p className="text-xs text-red-600 mt-1.5">
+                        {errors.service}
+                      </p>
+                    )}
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-semibold text-gray-900 mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-semibold text-gray-900 mb-2"
+                  >
                     Message <span className="text-red-500">*</span>
                   </label>
-                  <Textarea 
-                    id="message" 
-                    placeholder="Tell us about your project, timeline, and budget..." 
-                    rows={6} 
-                    value={form.message} 
-                    onChange={(e) => update("message", e.target.value)} 
+                  <Textarea
+                    id="message"
+                    placeholder="Tell us about your project, timeline, and budget..."
+                    rows={6}
+                    value={form.message}
+                    onChange={(e) => update("message", e.target.value)}
                     className="form-input bg-gray-50 border-gray-200 resize-none"
                   />
-                  {errors.message && <p className="text-xs text-red-600 mt-1.5">{errors.message}</p>}
+                  {errors.message && (
+                    <p className="text-xs text-red-600 mt-1.5">
+                      {errors.message}
+                    </p>
+                  )}
                 </div>
 
-                <Button 
-                  type="submit" 
-                  size="lg" 
+                <Button
+                  type="submit"
+                  size="lg"
                   className="w-full btn-primary text-white h-14 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all"
                 >
                   Request a Quote <Send className="ml-2 w-5 h-5" />
                 </Button>
 
                 <p className="text-xs text-gray-500 text-center">
-                  By submitting this form, you agree to our privacy policy and terms of service.
+                  By submitting this form, you agree to our privacy policy and
+                  terms of service.
                 </p>
               </form>
             </div>
