@@ -180,59 +180,243 @@ const serviceCategories = [
 
 const ServicesPage = () => (
   <Layout>
-    {/* Hero */}
-    <section className="relative section-padding overflow-hidden" aria-label="Services hero">
-      <div className="absolute inset-0">
-        <img src={servicesHero} alt="Technology automation services background" className="w-full h-full object-cover opacity-20" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 to-background" />
-      </div>
-      <div className="container mx-auto relative z-10 text-center">
-        <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 px-4 py-2 rounded-full mb-6">
-          Our Services
-        </span>
-        <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.1] mb-6">
-          Complete <span className="gradient-text">Technology & Automation</span> Solutions
-        </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-          From e-commerce stores and WhatsApp automation to AI voice agents and custom software — we deliver cutting-edge solutions that transform how you do business.
-        </p>
-        <Link to="/contact">
-          <Button size="lg" className="gradient-bg text-primary-foreground font-semibold glow-border">
-            Book a Service <ArrowRight className="ml-2 w-4 h-4" />
-          </Button>
-        </Link>
+    <style>{`
+      @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap');
+      
+      * {
+        font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+      
+      h1, h2, h3, h4, h5, h6, .heading-font {
+        font-family: 'Outfit', sans-serif;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      .animate-fade-in-up {
+        animation: fadeInUp 1s ease-out forwards;
+      }
+
+      .animate-fade-in {
+        animation: fadeIn 1.2s ease-out forwards;
+      }
+
+      .services-hero-banner {
+        position: relative;
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-image: url('${servicesHero}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .services-hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(15, 23, 42, 0.90) 0%,
+          rgba(30, 41, 59, 0.85) 50%,
+          rgba(15, 23, 42, 0.88) 100%
+        );
+      }
+
+      .services-hero-overlay::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: 
+          radial-gradient(circle at 30% 40%, rgba(99, 102, 241, 0.12) 0%, transparent 50%),
+          radial-gradient(circle at 70% 60%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+      }
+
+      .text-glow {
+        text-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+      }
+
+      .service-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid rgba(226, 232, 240, 0.8);
+      }
+
+      .service-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        border-color: rgba(99, 102, 241, 0.3);
+      }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      }
+
+      .btn-primary {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+      }
+
+      .btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.6s;
+      }
+
+      .btn-primary:hover::before {
+        left: 100%;
+      }
+
+      .gradient-bg {
+        background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+      }
+
+      .section-badge {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+      }
+    `}</style>
+
+    {/* Hero Section with Background Image */}
+    <section className="services-hero-banner">
+      <div className="services-hero-overlay"></div>
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20">
+        <div className="max-w-4xl mx-auto text-center">
+          {/* Badge */}
+          <div
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full section-badge mb-6 animate-fade-in"
+            style={{ animationDelay: "0.1s", opacity: 0 }}
+          >
+            <Sparkles className="w-4 h-4 text-indigo-300" />
+            <span className="text-sm font-semibold text-white tracking-wide">
+              Our Services
+            </span>
+          </div>
+
+          {/* Main Heading */}
+          <h1
+            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight mb-6 text-glow animate-fade-in-up"
+            style={{ animationDelay: "0.2s", opacity: 0 }}
+          >
+            <span className="text-white">Complete </span>
+            <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Technology & Automation
+            </span>
+            <span className="text-white"> Solutions</span>
+          </h1>
+
+          {/* Description */}
+          <p
+            className="text-lg sm:text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto mb-10 animate-fade-in-up"
+            style={{ animationDelay: "0.4s", opacity: 0 }}
+          >
+            From e-commerce stores and WhatsApp automation to AI voice agents and custom software — we deliver cutting-edge solutions that transform how you do business.
+          </p>
+
+          {/* CTA Button */}
+          <div
+            className="animate-fade-in-up"
+            style={{ animationDelay: "0.6s", opacity: 0 }}
+          >
+            <Link to="/contact">
+              <Button
+                size="lg"
+                className="btn-primary text-white px-10 py-6 text-lg rounded-xl shadow-2xl hover:shadow-indigo-500/50 transition-all font-semibold"
+              >
+                Book a Service
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
 
     {/* Service Categories */}
-    {serviceCategories.map((cat) => (
-      <section key={cat.id} id={cat.id} className="section-padding even:bg-card/30" aria-label={cat.title}>
-        <div className="container mx-auto">
-          <SectionHeading label={cat.label} title={cat.title} description={cat.description} />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {cat.services.map((s) => (
-              <ServiceCard key={s.title} icon={s.icon} title={s.title} description={s.description} />
+    {serviceCategories.map((cat, idx) => (
+      <section
+        key={cat.id}
+        id={cat.id}
+        className={`py-20 lg:py-24 ${idx % 2 === 0 ? 'bg-white' : 'gradient-bg'}`}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 space-y-4">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 border border-indigo-100">
+              <Code className="w-4 h-4 text-indigo-600" />
+              <span className="text-sm font-semibold text-indigo-700 tracking-wide">
+                {cat.label}
+              </span>
+            </div>
+            <h2 className="text-3xl lg:text-4xl font-bold heading-font text-gray-900">
+              {cat.title}
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              {cat.description}
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {cat.services.map((service, i) => (
+              <div key={i} className="service-card bg-white p-8 rounded-2xl">
+                <ServiceCard {...service} />
+              </div>
             ))}
           </div>
         </div>
       </section>
     ))}
 
-    {/* CTA */}
-    <section className="section-padding" aria-label="Book a service">
-      <div className="container mx-auto">
-        <div className="glass-card p-10 md:p-16 text-center relative overflow-hidden">
-          <div className="absolute inset-0 gradient-bg opacity-5" />
-          <div className="relative z-10">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Need a Custom Solution?
-            </h2>
-            <p className="text-muted-foreground max-w-xl mx-auto mb-8">
-              Can't find exactly what you're looking for? We build custom solutions tailored to your unique requirements.
-            </p>
+    {/* CTA Section */}
+    <section className="py-20 lg:py-28 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-700"></div>
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-3xl mx-auto text-center space-y-6">
+          <h2 className="text-3xl lg:text-5xl font-bold text-white heading-font leading-tight">
+            Need a Custom Solution?
+          </h2>
+          <p className="text-xl text-indigo-100 max-w-2xl mx-auto">
+            Can't find exactly what you're looking for? We build custom solutions tailored to your unique requirements.
+          </p>
+          <div>
             <Link to="/contact">
-              <Button size="lg" className="gradient-bg text-primary-foreground font-semibold glow-border">
-                Request a Quote <ArrowRight className="ml-2 w-4 h-4" />
+              <Button
+                size="lg"
+                className="bg-white text-indigo-600 hover:bg-gray-100 px-10 py-6 text-lg rounded-xl shadow-2xl hover:shadow-3xl transition-all font-semibold"
+              >
+                Request a Quote
+                <ArrowRight className="ml-3 w-5 h-5" />
               </Button>
             </Link>
           </div>

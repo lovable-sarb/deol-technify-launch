@@ -8,7 +8,7 @@ import Layout from "@/components/Layout";
 import heroImage from "@/assets/hero-illustration.jpg";
 import {
   ArrowRight, Code, Zap, Bot, MessageSquare, ShoppingCart,
-  Headphones, Rocket, Shield, TrendingUp, Settings, Cpu,
+  Headphones, Rocket, Shield, TrendingUp, Settings, Cpu, Sparkles,
 } from "lucide-react";
 
 const services = [
@@ -46,46 +46,252 @@ const Index = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="relative section-padding overflow-hidden" aria-label="Hero">
-        <div className="absolute inset-0 grid-pattern opacity-40" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px]" />
-        <div className="container mx-auto relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-primary bg-primary/10 px-4 py-2 rounded-full mb-6 animate-slide-up">
-                <Zap className="w-3.5 h-3.5" /> Advanced Tech & Automation
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap');
+        
+        * {
+          font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6, .heading-font {
+          font-family: 'Outfit', sans-serif;
+          font-weight: 700;
+          letter-spacing: -0.02em;
+        }
+
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(40px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+          from {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        @keyframes shimmer {
+          0% { background-position: -1000px 0; }
+          100% { background-position: 1000px 0; }
+        }
+
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-15px); }
+        }
+
+        .animate-fade-in-up {
+          animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .animate-fade-in {
+          animation: fadeIn 1.2s ease-out forwards;
+        }
+
+        .animate-scale-in {
+          animation: scaleIn 0.8s ease-out forwards;
+        }
+
+        .hero-banner {
+          position: relative;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          background-image: url('${heroImage}');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+
+        .hero-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            135deg,
+            rgba(15, 23, 42, 0.92) 0%,
+            rgba(30, 41, 59, 0.88) 50%,
+            rgba(15, 23, 42, 0.85) 100%
+          );
+        }
+
+        .hero-overlay::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: 
+            radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.12) 0%, transparent 50%);
+        }
+
+        .glass-card {
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(12px);
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+          transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card {
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .service-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+          border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .text-glow {
+          text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-primary {
+          position: relative;
+          overflow: hidden;
+          background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+        }
+
+        .btn-primary::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+          transition: left 0.6s;
+        }
+
+        .btn-primary:hover::before {
+          left: 100%;
+        }
+
+        .stat-card {
+          background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .gradient-bg {
+          background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+        }
+
+        .section-badge {
+          background: rgba(255, 255, 255, 0.15);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+      `}</style>
+
+      {/* Hero Section with Background Image */}
+      <section className="hero-banner">
+        <div className="hero-overlay"></div>
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-5xl mx-auto text-center py-20">
+            {/* Badge */}
+            <div
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full section-badge mb-8 animate-fade-in"
+              style={{ animationDelay: "0.1s", opacity: 0 }}
+            >
+              <Sparkles className="w-4 h-4 text-indigo-300" />
+              <span className="text-sm font-semibold text-white tracking-wide">
+                Advanced Tech & Automation
               </span>
-              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.1] mb-6 animate-slide-up animate-slide-up-delay-1">
-                Build Smarter with{" "}
-                <span className="gradient-text">AI-Powered</span> Automation
-              </h1>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg animate-slide-up animate-slide-up-delay-2">
-                We design, develop, and automate scalable tech solutions — from custom software and SaaS platforms to AI agents, CRM automation, and communication systems.
-              </p>
-              <div className="flex flex-wrap gap-4 animate-slide-up animate-slide-up-delay-3">
-                <Link to="/contact">
-                  <Button size="lg" className="gradient-bg text-primary-foreground font-semibold glow-border text-base px-8">
-                    Book a Service <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
-                </Link>
-                <Link to="/services">
-                  <Button size="lg" variant="outline" className="border-border text-foreground hover:bg-secondary font-semibold text-base px-8">
-                    Explore Services
-                  </Button>
-                </Link>
-              </div>
             </div>
-            <div className="relative animate-slide-up animate-slide-up-delay-2">
-              <div className="absolute inset-0 gradient-bg opacity-10 rounded-2xl blur-2xl" />
-              <img
-                src={heroImage}
-                alt="Deol Technify AI-powered technology and automation solutions illustration"
-                className="relative rounded-2xl border border-border/40 w-full animate-float shadow-xl"
-                width={960}
-                height={544}
-                loading="eager"
-              />
+
+            {/* Main Heading */}
+            <h1
+              className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-tight mb-8 text-glow animate-fade-in-up"
+              style={{ animationDelay: "0.2s", opacity: 0 }}
+            >
+              <span className="text-white block mb-3">
+                Build Smarter with
+              </span>
+              <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                AI-Powered Automation
+              </span>
+            </h1>
+
+            {/* Description */}
+            <p
+              className="text-xl sm:text-2xl text-gray-200 leading-relaxed max-w-3xl mx-auto mb-12 animate-fade-in-up"
+              style={{ animationDelay: "0.4s", opacity: 0 }}
+            >
+              We design, develop, and automate scalable tech solutions — from
+              custom software and SaaS platforms to AI agents, CRM automation,
+              and communication systems.
+            </p>
+
+            {/* CTA Buttons */}
+            <div
+              className="flex flex-wrap gap-4 justify-center mb-16 animate-fade-in-up"
+              style={{ animationDelay: "0.6s", opacity: 0 }}
+            >
+              <Link to="/contact">
+                <Button
+                  size="lg"
+                  className="btn-primary text-white px-10 py-7 text-lg rounded-xl shadow-2xl hover:shadow-indigo-500/50 transition-all font-semibold"
+                >
+                  Book a Service
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+              </Link>
+              <Link to="/services">
+                <Button
+                  size="lg"
+                  className="bg-white/10 backdrop-blur-md text-white border-2 border-white/30 hover:bg-white/20 px-10 py-7 text-lg rounded-xl transition-all font-semibold"
+                >
+                  Explore Services
+                </Button>
+              </Link>
             </div>
+
+            {/* Stats */}
+            <div
+              className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-4xl mx-auto animate-fade-in"
+              style={{ animationDelay: "0.8s", opacity: 0 }}
+            >
+              {stats.map((stat, i) => (
+                <div key={i} className="stat-card p-6 rounded-2xl">
+                  <div className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-indigo-300 to-purple-300 bg-clip-text text-transparent heading-font mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-gray-300 font-medium">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+          <div className="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-2">
+            <div className="w-1.5 h-3 bg-white/60 rounded-full"></div>
           </div>
         </div>
       </section>
